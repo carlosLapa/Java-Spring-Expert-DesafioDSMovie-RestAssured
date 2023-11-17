@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.*;
 
-public class MovieControllerRA {
+class MovieControllerRA {
 
     private String clientUsername, clientPassword, adminUsername, adminPassword;
     private String adminToken, clientToken, invalidToken;
@@ -98,7 +98,7 @@ public class MovieControllerRA {
 
     //criar HashMap + headers e token
     @Test
-    void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndBlankTitle() throws JSONException {
+    void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndBlankTitle()  {
         postMovieInstance.put("title", "");
         JSONObject newProduct = new JSONObject(postMovieInstance);
 
@@ -116,7 +116,7 @@ public class MovieControllerRA {
     }
 
     @Test
-    public void insertShouldReturnForbiddenWhenClientLogged() throws Exception {
+    void insertShouldReturnForbiddenWhenClientLogged() {
         org.json.simple.JSONObject newMovie = new org.json.simple.JSONObject(postMovieInstance);
 
         given()
@@ -133,7 +133,7 @@ public class MovieControllerRA {
     }
 
     @Test
-    public void insertShouldReturnUnauthorizedWhenInvalidToken() throws Exception {
+    void insertShouldReturnUnauthorizedWhenInvalidToken() {
         org.json.simple.JSONObject newMovie = new org.json.simple.JSONObject(postMovieInstance);
 
         given()
